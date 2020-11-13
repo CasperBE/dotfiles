@@ -1,0 +1,87 @@
+# Directories
+alias dotfiles="cd $DOTFILES"
+alias library="cd $HOME/Library"
+
+# Composer
+alias c="php -d memory_limit=-1 /usr/local/bin/composer"
+alias cda="composer dump-autoload -o"
+
+# Homebrew
+alias cask="brew cask"
+
+# Laravel
+alias a="php artisan"
+alias mfs="php artisan migrate:fresh --seed"
+alias seed="php artisan db:seed"
+
+# PHP
+alias phpunit="vendor/bin/phpunit"
+
+# PhpStorm
+alias phpstorm='open -a /Applications/PhpStorm.app "`pwd`"'
+
+# PHPunit
+alias p="phpunit"
+alias pf="phpunit --filter"
+alias pw="phpunit-watcher watch"
+
+# SSH
+alias copykey='command cat ~/.ssh/id_rsa.public | pbcopy'
+alias sshconfig="nano ~/.ssh/config"
+
+# Create ZIP archive
+alias zip="zip -x *.DS_Store -x *__MACOSX* -x *.AppleDouble*"
+
+# Hosts
+alias hostfile="sudo nano /etc/hosts"
+
+# Fast open
+alias o="open ."
+
+# List all files colorized in long format
+alias l="ls -laF"
+
+# IP addresses
+alias ip="curl https://diagnostic.opendns.com/myip ; echo"
+alias localip="ifconfig -a | grep -o 'inet6\? \(addr:\)\?\s\?\(\(\([0-9]\+\.\)\{3\}[0-9]\+\)\|[a-fA-F0-9:]\+\)' | awk '{ sub(/inet6? (addr:)? ?/, \"\"); print }'"
+
+# Flush Directory Service cache
+alias flushdns="sudo dscacheutil -flushcache; sudo killall -HUP mDNSResponder"
+
+# Lock the screen
+alias afk="/System/Library/CoreServices/Menu\ Extras/User.menu/Contents/Resources/CGSession -suspend"
+
+# Log off
+alias logoff="/System/Library/CoreServices/Menu\ Extras/User.menu/Contents/Resources/CGSession -suspend"
+
+# Empty the Trash on all mounted volumes and the main HDD
+# Also, clear Apple’s System Logs to improve shell startup speed
+alias emptytrash="sudo rm -rfv /Volumes/*/.Trashes; sudo rm -rfv ~/.Trash; sudo rm -rfv /private/var/log/asl/*.asl"
+
+# Show/hide desktop icons
+alias desktopshow="defaults write com.apple.finder CreateDesktop -bool true && killfinder"
+alias desktophide="defaults write com.apple.finder CreateDesktop -bool false && killfinder"
+
+# Enable aliases to be sudo’ed
+alias sudo="sudo "
+
+# Scape webpage
+alias scrape="scrapeUrl"
+
+# Shrug
+alias shrug="echo '¯\_(ツ)_/¯' | pbcopy"
+
+# Show system information
+alias displays="system_profiler SPDisplaysDataType"
+alias cpu="sysctl -n machdep.cpu.brand_string"
+alias ram="top -l 1 -s 0 | grep PhysMem"
+
+# Reload native apps
+alias killdock="killall Dock"
+alias killfinder="killall Finder"
+alias killmenubar="killall SystemUIServer NotificationCenter"
+alias killos="killfinder && killdock && killmenubar"
+alias killtouchbar="killall ControlStrip"
+
+# Clear
+alias c="clear"
