@@ -116,6 +116,7 @@ brew tap homebrew/bundle
 echo
 echo "${YELLOW}Processing Brewfile${RESET}"
 echo          "-------------------"
+cd $HOME/.dotfiles
 brew bundle
 
 # Create a directory for global packages and tell npm where to store globally installed packages
