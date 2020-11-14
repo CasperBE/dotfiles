@@ -843,7 +843,8 @@ for app in "Activity Monitor" \
 	"Safari" \
 	"SystemUIServer" \
 	"Terminal" \
-	"Transmission" do
+	"Transmission"
+do
 	killall "${app}" &> /dev/null 2>&1
 done
 

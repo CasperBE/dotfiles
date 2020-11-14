@@ -32,7 +32,9 @@ touch $HOME/.hushlogin
 echo
 echo "${YELLOW}Installing oh-my-zsh${RESET}"
 echo          "--------------------"
-rm -rf $HOME/.oh-my-zsh
+if test -f "$HOME/.oh-my-zsh"; then
+	rm -rf $HOME/.oh-my-zsh
+fi
 curl -L https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh | sh
 #sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
@@ -40,14 +42,18 @@ curl -L https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/in
 echo
 echo "${YELLOW}Setting up .zshrc${RESET}"
 echo          "-----------------"
-rm $HOME/.zshrc
+if test -f "$HOME/.oh-my-zsh"; then
+	rm $HOME/.zshrc
+fi
 ln -s $HOME/.dotfiles/shell/.zshrc $HOME/.zshrc
 
 # Add global gitignore
 echo
 echo "${YELLOW}Setting up .gitignore-global${RESET}"
 echo          "----------------------------"
-rm $HOME/.gitignore-global
+if test -f "$HOME/.gitignore-global"; then
+    rm $HOME/.gitignore-global
+fi
 ln -s $HOME/.dotfiles/shell/.gitignore-global $HOME/.gitignore-global
 git config --global core.excludesfile $HOME/.gitignore-global
 
@@ -70,8 +76,7 @@ cd $DOTFILES
 echo
 echo "${YELLOW}Setting up npm${RESET}"
 echo          "--------------"
-if [ ! -d "${HOME}/.npm-packages" ] 
-then
+if [ ! -d "${HOME}/.npm-packages" ]; then
     mkdir "${HOME}/.npm-packages"
 fi
 npm config set prefix "${HOME}/.npm-packages"
@@ -79,7 +84,6 @@ npm config set prefix "${HOME}/.npm-packages"
 echo
 echo "${YELLOW}Installing composer${RESET}"
 echo          "-------------------"
-rm -rf $HOME/.oh-my-zsh
 EXPECTED_COMPOSER_CHECKSUM="$(curl https://composer.github.io/installer.sig)"
 php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
 ACTUAL_COMPOSER_CHECKSUM="$(php -r "echo hash_file('sha384', 'composer-setup.php');")"
@@ -90,7 +94,7 @@ if [ "$EXPECTED_COMPOSER_CHECKSUM" != "$ACTUAL_COMPOSER_CHECKSUM" ]; then
 fi
 php composer-setup.php
 rm composer-setup.php
-mv composer.phar /usr/local/bin/composer
+mv $HOME/composer.phar /usr/local/bin/composer
 
 echo
 echo "${YELLOW}Installing homebrew${RESET}"
