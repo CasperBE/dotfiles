@@ -32,7 +32,7 @@ touch $HOME/.hushlogin
 echo
 echo "${YELLOW}Installing oh-my-zsh${RESET}"
 echo          "--------------------"
-if test -f "$HOME/.oh-my-zsh"; then
+if test -d "$HOME/.oh-my-zsh"; then
     rm -rf $HOME/.oh-my-zsh
 fi
 curl -L https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh | sh
@@ -42,7 +42,7 @@ curl -L https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/in
 echo
 echo "${YELLOW}Setting up .zshrc${RESET}"
 echo          "-----------------"
-if test -f "$HOME/.oh-my-zsh"; then
+if test -f "$HOME/.zshrc"; then
     rm $HOME/.zshrc
 fi
 ln -s $HOME/.dotfiles/shell/.zshrc $HOME/.zshrc
@@ -86,12 +86,12 @@ fi
 php composer-setup.php
 rm composer-setup.php
 if [ ! -d "/usr/local" ]; then
-	mkdir -p -m 775 /usr/local
+	sudo mkdir -p -m 775 /usr/local
 fi
 if [ ! -d "/usr/local/bin" ]; then
-    mkdir -p -m 775 /usr/local/bin
+    sudo mkdir -p -m 775 /usr/local/bin
 fi
-mv $HOME/composer.phar /usr/local/bin/composer
+sudo mv $HOME/composer.phar /usr/local/bin/composer
 
 echo
 echo "${YELLOW}Installing homebrew${RESET}"
