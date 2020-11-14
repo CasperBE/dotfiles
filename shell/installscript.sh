@@ -89,7 +89,7 @@ if [ ! -d "/usr/local" ]; then
 	mkdir -p -m 775 /usr/local
 fi
 if [ ! -d "/usr/local/bin" ]; then
-sudo mkdir -p -m 775 /usr/local/bin
+    mkdir -p -m 775 /usr/local/bin
 fi
 mv $HOME/composer.phar /usr/local/bin/composer
 
