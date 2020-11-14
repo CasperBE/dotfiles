@@ -1,22 +1,22 @@
 #!/bin/sh
 
 setup_color() {
-	# Only use colors if connected to a terminal
-	if [ -t 1 ]; then
-		RED=$(printf '\033[31m')
-		GREEN=$(printf '\033[32m')
-		YELLOW=$(printf '\033[33m')
-		BLUE=$(printf '\033[34m')
-		BOLD=$(printf '\033[1m')
-		RESET=$(printf '\033[m')
-	else
-		RED=""
-		GREEN=""
-		YELLOW=""
-		BLUE=""
-		BOLD=""
-		RESET=""
-	fi
+    # Only use colors if connected to a terminal
+    if [ -t 1 ]; then
+        RED=$(printf '\033[31m')
+        GREEN=$(printf '\033[32m')
+        YELLOW=$(printf '\033[33m')
+        BLUE=$(printf '\033[34m')
+        BOLD=$(printf '\033[1m')
+        RESET=$(printf '\033[m')
+    else
+        RED=""
+        GREEN=""
+        YELLOW=""
+        BLUE=""
+        BOLD=""
+        RESET=""
+    fi
 }
 
 setup_color
@@ -33,7 +33,7 @@ echo
 echo "${YELLOW}Installing oh-my-zsh${RESET}"
 echo          "--------------------"
 if test -f "$HOME/.oh-my-zsh"; then
-	rm -rf $HOME/.oh-my-zsh
+    rm -rf $HOME/.oh-my-zsh
 fi
 curl -L https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh | sh
 #sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
@@ -43,7 +43,7 @@ echo
 echo "${YELLOW}Setting up .zshrc${RESET}"
 echo          "-----------------"
 if test -f "$HOME/.oh-my-zsh"; then
-	rm $HOME/.zshrc
+    rm $HOME/.zshrc
 fi
 ln -s $HOME/.dotfiles/shell/.zshrc $HOME/.zshrc
 
@@ -72,15 +72,6 @@ cd ~/.dotfiles/shell
 chmod +x z.sh
 cd $DOTFILES
 
-# Create a directory for global packages and tell npm where to store globally installed packages
-echo
-echo "${YELLOW}Setting up npm${RESET}"
-echo          "--------------"
-if [ ! -d "${HOME}/.npm-packages" ]; then
-    mkdir "${HOME}/.npm-packages"
-fi
-npm config set prefix "${HOME}/.npm-packages"
-
 echo
 echo "${YELLOW}Installing composer${RESET}"
 echo          "-------------------"
@@ -94,6 +85,12 @@ if [ "$EXPECTED_COMPOSER_CHECKSUM" != "$ACTUAL_COMPOSER_CHECKSUM" ]; then
 fi
 php composer-setup.php
 rm composer-setup.php
+if [ ! -d "/usr/local" ]; then
+	mkdir -p -m 775 /usr/local
+fi
+if [ ! -d "/usr/local/bin" ]; then
+sudo mkdir -p -m 775 /usr/local/bin
+fi
 mv $HOME/composer.phar /usr/local/bin/composer
 
 echo
@@ -102,7 +99,7 @@ echo          "-------------------"
 if test ! $(which brew); then
     /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
 else
-	echo "${RED}homebrew already installed${RESET}"
+    echo "${RED}homebrew already installed${RESET}"
 fi
 
 # Update Homebrew recipes
@@ -120,6 +117,15 @@ echo
 echo "${YELLOW}Processing Brewfile${RESET}"
 echo          "-------------------"
 brew bundle
+
+# Create a directory for global packages and tell npm where to store globally installed packages
+echo
+echo "${YELLOW}Setting up npm${RESET}"
+echo          "--------------"
+if [ ! -d "${HOME}/.npm-packages" ]; then
+    mkdir "${HOME}/.npm-packages"
+fi
+npm config set prefix "${HOME}/.npm-packages"
 
 # Set default MySQL root password and auth type.
 echo
