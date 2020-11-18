@@ -66,6 +66,7 @@ brew 'sphinx-doc'
 # Apps
 #cask '1password'
 #cask '1password-cli'
+cask 'adobe-creative-cloud'
 cask 'aerial'
 cask 'airflow'
 cask 'alfred'
@@ -85,6 +86,7 @@ cask 'imageoptim'
 cask 'insomnia'
 cask 'iterm2'
 cask 'maccy'
+cask 'microsoft-office'
 cask 'phpstorm'
 cask 'pokerstars'
 cask 'postman'
@@ -130,6 +132,4 @@ cask 'font-source-serif-pro'
 cask 'font-victor-mono'
 
 # Mac App Store
-mas 'Giphy Capture', id: 668208984
 mas 'Brother P-touch Editor', id: 1453365242
-mas 'Tweetbot', id: 1384080005
