@@ -28,6 +28,7 @@ brew 'mackup'
 brew 'mas' # Mac App Store manager
 brew 'ncdu' # NCurses Disk Usage
 brew 'pkg-config' # https://github.com/driesvints/dotfiles/issues/20
+brew 'svn' # Needed to install most of the fonts
 brew 'trash' # Manage the Trash bin
 brew 'tree' # List directories in a tree structure
 brew 'wget'
@@ -49,7 +50,6 @@ brew 'xpdf'
 brew 'php', restart_service: true
 brew 'php@7.3'
 brew 'php@7.2'
-brew 'composer'
 brew 'imagemagick'
 brew 'libmemcached'
 brew 'memcached'
@@ -81,14 +81,12 @@ cask 'firefox'
 cask 'github'
 cask 'google-backup-and-sync'
 cask 'google-chrome'
-cask 'gpg-suite'
 cask 'imageoptim'
 cask 'insomnia'
 cask 'iterm2'
 cask 'maccy'
 cask 'microsoft-office'
 cask 'phpstorm'
-cask 'pokerstars'
 cask 'postman'
 cask 'qsync-client'
 cask 'screenflow'
