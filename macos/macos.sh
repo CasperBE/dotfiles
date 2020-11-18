@@ -180,7 +180,8 @@ sudo defaults write /Library/Preferences/com.apple.loginwindow showInputMenu -bo
 sudo systemsetup -settimezone "Europe/Brussels" > /dev/null
 
 # Stop iTunes from responding to the keyboard media keys
-launchctl unload -w /System/Library/LaunchAgents/com.apple.rcd.plist 2> /dev/null
+# Commented out because this makes Spotify also not responding to the media keys
+#launchctl unload -w /System/Library/LaunchAgents/com.apple.rcd.plist 2> /dev/null
 
 ###############################################################################
 # Energy saving                                                               #
