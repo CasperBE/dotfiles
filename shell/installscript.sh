@@ -58,11 +58,13 @@ ln -s $HOME/.dotfiles/shell/.gitignore-global $HOME/.gitignore-global
 git config --global core.excludesfile $HOME/.gitignore-global
 
 # Symlink the Mackup config
-#echo
-#echo "${YELLOW}Setting up .mackup.cfg${RESET}"
-#echo          "----------------------"
-#rm $HOME/.mackup.cfg
-#ln -s $HOME/.dotfiles/macos/.mackup.cfg $HOME/.mackup.cfg
+echo
+echo "${YELLOW}Setting up .mackup.cfg${RESET}"
+echo          "----------------------"
+if test -f "$HOME/.mackup.cfg"; then
+    rm $HOME/.mackup.cfg
+fi
+ln -s $HOME/.dotfiles/macos/.mackup.cfg $HOME/.mackup.cfg
 
 # Activate z
 echo
