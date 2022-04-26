@@ -30,7 +30,7 @@ alias copykey='command cat ~/.ssh/id_rsa.public | pbcopy'
 alias sshconfig="nano ~/.ssh/config"
 
 # Create ZIP archive
-alias zip="zip -x *.DS_Store -x *__MACOSX* -x *.AppleDouble*"
+#alias zip="zip -x *.DS_Store -x *__MACOSX* -x *.AppleDouble*"
 
 # Hosts
 alias hostfile="sudo nano /etc/hosts"
