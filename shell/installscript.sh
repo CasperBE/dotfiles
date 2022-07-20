@@ -75,27 +75,6 @@ chmod +x z.sh
 cd $DOTFILES
 
 echo
-echo "${YELLOW}Installing composer${RESET}"
-echo          "-------------------"
-EXPECTED_COMPOSER_CHECKSUM="$(curl https://composer.github.io/installer.sig)"
-php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
-ACTUAL_COMPOSER_CHECKSUM="$(php -r "echo hash_file('sha384', 'composer-setup.php');")"
-if [ "$EXPECTED_COMPOSER_CHECKSUM" != "$ACTUAL_COMPOSER_CHECKSUM" ]; then
-    >&2 echo 'ERROR: Invalid installer checksum'
-    rm composer-setup.php
-    exit 1
-fi
-php composer-setup.php
-rm composer-setup.php
-if [ ! -d "/usr/local" ]; then
-	sudo mkdir -p -m 775 /usr/local
-fi
-if [ ! -d "/usr/local/bin" ]; then
-    sudo mkdir -p -m 775 /usr/local/bin
-fi
-sudo mv $HOME/composer.phar /usr/local/bin/composer
-
-echo
 echo "${YELLOW}Installing homebrew${RESET}"
 echo          "-------------------"
 if test ! $(which brew); then
@@ -120,6 +99,27 @@ echo "${YELLOW}Processing Brewfile${RESET}"
 echo          "-------------------"
 cd $HOME/.dotfiles
 brew bundle
+
+echo
+echo "${YELLOW}Installing composer${RESET}"
+echo          "-------------------"
+EXPECTED_COMPOSER_CHECKSUM="$(curl https://composer.github.io/installer.sig)"
+php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
+ACTUAL_COMPOSER_CHECKSUM="$(php -r "echo hash_file('sha384', 'composer-setup.php');")"
+if [ "$EXPECTED_COMPOSER_CHECKSUM" != "$ACTUAL_COMPOSER_CHECKSUM" ]; then
+    >&2 echo 'ERROR: Invalid installer checksum'
+    rm composer-setup.php
+    exit 1
+fi
+php composer-setup.php
+rm composer-setup.php
+if [ ! -d "/usr/local" ]; then
+    sudo mkdir -p -m 775 /usr/local
+fi
+if [ ! -d "/usr/local/bin" ]; then
+    sudo mkdir -p -m 775 /usr/local/bin
+fi
+sudo mv $HOME/composer.phar /usr/local/bin/composer
 
 # Create a directory for global packages and tell npm where to store globally installed packages
 echo
