@@ -106,6 +106,7 @@ brew bundle
 echo
 echo "${YELLOW}Installing composer${RESET}"
 echo          "-------------------"
+cd $HOME
 EXPECTED_COMPOSER_CHECKSUM="$(curl https://composer.github.io/installer.sig)"
 php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
 ACTUAL_COMPOSER_CHECKSUM="$(php -r "echo hash_file('sha384', 'composer-setup.php');")"
