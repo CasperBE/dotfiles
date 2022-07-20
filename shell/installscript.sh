@@ -79,6 +79,9 @@ echo "${YELLOW}Installing homebrew${RESET}"
 echo          "-------------------"
 if test ! $(which brew); then
     /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
+    # Add homebrew to PATH
+    echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> /Users/jasper/.zprofile
+    eval "$(/opt/homebrew/bin/brew shellenv)"
 else
     echo "${RED}homebrew already installed${RESET}"
 fi
